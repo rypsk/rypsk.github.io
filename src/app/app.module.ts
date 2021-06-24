@@ -10,7 +10,12 @@ import { BodyComponent } from './components/body/body.component';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-
+import { DialogModule } from 'primeng/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PasswordModule } from 'primeng/password';
+import { FormsModule } from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
+import { RippleModule } from 'primeng/ripple';
 
 
 @NgModule({
@@ -26,7 +31,13 @@ import { InputTextModule } from 'primeng/inputtext';
     AppRoutingModule,
     MenubarModule,
     ButtonModule,
-    InputTextModule
+    InputTextModule,
+    DialogModule,
+    BrowserAnimationsModule,
+    PasswordModule,
+    FormsModule,
+    ToastModule,
+    RippleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

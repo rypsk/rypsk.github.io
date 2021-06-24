@@ -1,56 +1,67 @@
 import { Component, OnInit } from '@angular/core';
-import {MenubarModule} from 'primeng/menubar';
-import {MenuItem} from 'primeng/api';
+import { MenuItem } from 'primeng/api';
+import { LoginService } from 'src/app/services/login/login.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+  styleUrls: ['./menu.component.scss'],
+  providers: [MessageService]
 })
 export class MenuComponent implements OnInit {
 
   items: MenuItem[] = [];
-  loged: boolean = false;
+  isLoged: boolean = false;
+  showDialog: boolean = false;
+  user: string = '';
+  password: string = ' ';
 
-  constructor() { }
+  constructor(private loginService: LoginService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.fillMenuItems();
   }
 
-  fillMenuItems(){
+  fillMenuItems() {
     this.items = [
       {
-          label: 'File',
-          items: [{
-                  label: 'New', 
-                  icon: 'pi pi-fw pi-plus',
-                  items: [
-                      {label: 'Project'},
-                      {label: 'Other'},
-                  ]
-              },
-              {label: 'Open'},
-              {label: 'Quit'}
-          ]
+        label: 'RYPSK.com',
+        icon: 'pi pi-spin pi-spinner',
       },
       {
-          label: 'Edit',
-          icon: 'pi pi-fw pi-pencil',
-          items: [
-              {label: 'Delete', icon: 'pi pi-fw pi-trash'},
-              {label: 'Refresh', icon: 'pi pi-fw pi-refresh'}
-          ]
+        label: 'SHOP',
+        icon: 'pi pi-fw pi-shopping-cart',
+      },
+      {
+        label: 'ART',
+        icon: 'pi pi-fw pi-pencil',
+      },
+      {
+        label: 'REData',
+        icon: 'pi pi-fw pi-share-alt'
       }
-  ];
+    ];
   }
 
-  loginClick(){
-    this.loged = true;
+  displayDialog() {
+    this.showDialog = true;
   }
 
-  logoutClick(){
-    this.loged = false;
+  login() {
+    this.isLoged = this.loginService.login(this.user, this.password);
+    this.showDialog = false;
+    if (!this.isLoged){
+      this.showError('ERROR: User/password not found!');
+    }
+  }
+
+  logout() {
+    this.isLoged = this.loginService.logout();    
+  }
+
+  showError(message: string) {
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
   }
 
 }

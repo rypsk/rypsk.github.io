@@ -1,7 +1,8 @@
-<i class="pi pi-check"></i>
-<i class="pi pi-times"></i>
-<i class="pi pi-check"></i>
-<i class="pi pi-check" style="font-size: 2rem"></i>
-<i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+<div *ngIf="isLoged" id="userDiv">
+    user body
+</div>
+<div *ngIf="isAdmin" id="adminDiv">
+    admin body
+</div>
+BODY
 <router-outlet></router-outlet>
-

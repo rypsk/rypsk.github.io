@@ -1,5 +1,19 @@
 <p-menubar [model]="items">
     <input type="text" pInputText placeholder="Search">
-    <button *ngIf="loged" (click)="logoutClick()" pButton label="Logout" icon="pi pi-power-off"></button>
-    <button *ngIf="!loged" (click)="loginClick()" pButton label="Login" icon="pi pi-power-off"></button>
+    <button *ngIf="isLoged" (click)="logout()" pButton label="Logout" icon="pi pi-power-off"></button>
+    <button *ngIf="!isLoged" (click)="displayDialog()" pButton label="Login" icon="pi pi-user"></button>
 </p-menubar>
+<p-dialog header="LOGIN" [(visible)]="showDialog" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false">
+    <span class="p-float-label">
+        <input id="float-input" type="text" pInputText [(ngModel)]="user"> 
+        <label for="float-input">User</label>
+    </span>
+    <span class="p-float-label">
+        <p-password id="float-input-pass"  [(ngModel)]="password" [feedback]="false"></p-password>
+        <label for="float-input-pass"></label>
+    </span>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="login()" label="Ok" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>

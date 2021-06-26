@@ -28,18 +28,29 @@ export class MenuComponent implements OnInit {
       {
         label: 'RYPSK.com',
         icon: 'pi pi-spin pi-spinner',
+        routerLink: ['home'] 
       },
       {
         label: 'SHOP',
         icon: 'pi pi-fw pi-shopping-cart',
+        routerLink: ['shop'] 
       },
       {
         label: 'ART',
-        icon: 'pi pi-fw pi-pencil',
+        icon: 'pi pi-fw pi-palette',
       },
       {
         label: 'REData',
-        icon: 'pi pi-fw pi-share-alt'
+        icon: 'pi pi-fw pi-share-alt',
+        routerLink: ['redata'] 
+      },
+      {
+        label: 'MUSIC',
+        icon: 'pi pi-fw pi-sliders-v'
+      },
+      {
+        label: 'DASHBOARD',
+        icon: 'pi pi-fw pi-sitemap'
       }
     ];
   }

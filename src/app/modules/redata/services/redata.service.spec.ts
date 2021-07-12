@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { HandleErrorService } from './handle-error.service';
+import { RedataService } from './redata.service';
 
-describe('HandleErrorService', () => {
-  let service: HandleErrorService;
+describe('RedataService', () => {
+  let service: RedataService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(HandleErrorService);
+    service = TestBed.inject(RedataService);
   });
 
   it('should be created', () => {

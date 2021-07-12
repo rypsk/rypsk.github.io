@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  rypskApiUrl: 'http://localhost:4080/rypsk/api',
+  rypskApiUsersUrl: 'http://localhost:4080/rypsk/api/users',
+  redataApiUrl: 'api.esios.ree.es'
+
 };
 
 /*

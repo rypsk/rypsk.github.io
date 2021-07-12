@@ -1,1 +1,30 @@
-<p>redata-home works!</p>
+<div class="card">
+    <h5>Request</h5>
+    <div class="p-field p-col-12 p-md-4">
+        <label for="dateformat">Calendar</label>
+        <p-calendar [(ngModel)]="requestDate" dateFormat="yy-mm-dd" inputId="dateformat" [maxDate]="maxDate" [showIcon]="true"></p-calendar>        
+    </div>
+    <div>
+        <p-button label="Request" icon="pi pi-check" (onClick)="getData()"></p-button>
+    </div>
+    
+    <p-divider></p-divider>
+
+    <p-table [value]="data">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Datetime</th>
+                <th>Value</th>
+                <th>Geo Name</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-data>
+            <tr>
+                <td>{{data.datetime}}</td>
+                <td>{{data.value / 1000}}</td>
+                <td>{{data.geo_name}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+</div>

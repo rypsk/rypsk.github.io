@@ -1,0 +1,7 @@
+{
+    "rypsk/api":{
+        "target":"http://localhost:4080",
+        "secure":"false",
+        "logLevel":"debug"
+    }
+}

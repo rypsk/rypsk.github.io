@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,10 @@ import { PasswordModule } from 'primeng/password';
 import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { RippleModule } from 'primeng/ripple';
+import { HttpErrorHandler } from './services/http-error-handler/http-error-handler.service';
+import { MessageService } from './services/message/message.service';
+import { AccordionModule } from 'primeng/accordion';
+
 
 
 
@@ -43,9 +47,13 @@ import { RippleModule } from 'primeng/ripple';
     FormsModule,
     ToastModule,
     RippleModule,
-    HttpClientModule
+    HttpClientModule,
+    HttpClientJsonpModule,
+    AccordionModule
   ],
-  providers: [],
+  providers: [
+    HttpErrorHandler,
+    MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

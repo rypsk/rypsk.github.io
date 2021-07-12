@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { LoginService } from 'src/app/services/login/login.service';
 import { MessageService } from 'primeng/api';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-menu',
@@ -21,19 +22,20 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.fillMenuItems();
+    this.getUsers();
   }
 
   fillMenuItems() {
     this.items = [
       {
-        label: 'RYPSK.com',
+        label: 'RYPSK',
         icon: 'pi pi-spin pi-spinner',
-        routerLink: ['home'] 
+        routerLink: ['home']
       },
       {
         label: 'SHOP',
         icon: 'pi pi-fw pi-shopping-cart',
-        routerLink: ['shop'] 
+        routerLink: ['shop']
       },
       {
         label: 'ART',
@@ -42,7 +44,7 @@ export class MenuComponent implements OnInit {
       {
         label: 'REData',
         icon: 'pi pi-fw pi-share-alt',
-        routerLink: ['redata'] 
+        routerLink: ['redata']
       },
       {
         label: 'MUSIC',
@@ -60,15 +62,24 @@ export class MenuComponent implements OnInit {
   }
 
   login() {
-    this.isLoged = this.loginService.login(this.user, this.password);
+    console.log('Login() method with ' + this.user + ', ' + this.password);
+
+    let u: any = null;
+    this.loginService.login(this.user, this.password).subscribe(
+      (data) => u = data
+    )
+    console.log(u);
     this.showDialog = false;
-    if (!this.isLoged){
-      this.showError('ERROR: User/password not found!');
-    }
+  }
+
+  getUsers() {
+    this.loginService.getUsers().subscribe((data: User[]) => {
+      console.log(data);
+    })
   }
 
   logout() {
-    this.isLoged = this.loginService.logout();    
+    this.isLoged = this.loginService.logout();
   }
 
   showError(message: string) {

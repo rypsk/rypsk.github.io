@@ -8,6 +8,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
+import { ChartModule } from 'primeng/chart';
 
 
 
@@ -22,7 +23,8 @@ import { TableModule } from 'primeng/table';
     CalendarModule,
     ButtonModule,
     FormsModule,
-    TableModule
+    TableModule,
+    ChartModule
   ]
 })
 export class RedataModule { }

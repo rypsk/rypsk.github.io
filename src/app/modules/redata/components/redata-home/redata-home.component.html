@@ -1,15 +1,24 @@
 <div class="card">
     <h5>Request</h5>
     <div class="p-field p-col-12 p-md-4">
-        <label for="dateformat">Calendar</label>
-        <p-calendar [(ngModel)]="requestDate" dateFormat="yy-mm-dd" inputId="dateformat" [maxDate]="maxDate" [showIcon]="true"></p-calendar>        
-    </div>
-    <div>
-        <p-button label="Request" icon="pi pi-check" (onClick)="getData()"></p-button>
+        <p-calendar [(ngModel)]="requestDate" dateFormat="yy-mm-dd" (onSelect)="getData()" [maxDate]="maxDate" [showIcon]="true"></p-calendar>        
     </div>
     
     <p-divider></p-divider>
 
+    <div >
+        <p-card header="Min" [style]="{'width': '25rem', 'margin-bottom': '2em'}">
+            <ng-template pTemplate="header">
+            </ng-template>
+            <p>{{minPrice}}</p>
+        </p-card>
+        <p-card header="Max" [style]="{'width': '25rem', 'margin-bottom': '2em'}">
+            <ng-template pTemplate="header">
+            </ng-template>
+            <p>{{maxPrice}}</p>
+        </p-card>
+    </div>
+    
     <p-table [value]="data">
         <ng-template pTemplate="header">
             <tr>
@@ -21,17 +30,15 @@
         <ng-template pTemplate="body" let-data>
             <tr>
                 <td>{{data.datetime | date:'MMM d, y, HH:mm'}}</td>
-                <td>{{data.value / 1000 | number:'1.4'}} €</td>
+                <td>{{data.value / 1000 | number:'1.5'}} €/kWh</td>
                 <td>{{data.geo_name}}</td>
             </tr>
         </ng-template>
     </p-table>
 
-    <p-divider></p-divider>
-
     <div class="card">
         <h5>Chart</h5>
-        <p-chart type="line" [data]="data" [options]="chartOptions"></p-chart>
+        <p-chart type="line" [data]="chartData" [options]="chartOptions"></p-chart>
     </div>
-
+    
 </div>

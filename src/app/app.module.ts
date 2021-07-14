@@ -22,6 +22,8 @@ import { RippleModule } from 'primeng/ripple';
 import { HttpErrorHandler } from './services/http-error-handler/http-error-handler.service';
 import { MessageService } from './services/message/message.service';
 import { AccordionModule } from 'primeng/accordion';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+
 
 
 
@@ -49,7 +51,8 @@ import { AccordionModule } from 'primeng/accordion';
     RippleModule,
     HttpClientModule,
     HttpClientJsonpModule,
-    AccordionModule
+    AccordionModule,
+    BreadcrumbModule
   ],
   providers: [
     HttpErrorHandler,

@@ -48,7 +48,8 @@ export class MenuComponent implements OnInit {
       },
       {
         label: 'MUSIC',
-        icon: 'pi pi-fw pi-sliders-v'
+        icon: 'pi pi-fw pi-sliders-v',
+        routerLink: ['music']
       },
       {
         label: 'DASHBOARD',

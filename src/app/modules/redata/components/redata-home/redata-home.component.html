@@ -6,18 +6,11 @@
     
     <p-divider></p-divider>
 
-    <div >
-        <p-card header="Min" [style]="{'width': '25rem', 'margin-bottom': '2em'}">
-            <ng-template pTemplate="header">
-            </ng-template>
-            <p>{{minPrice}}</p>
-        </p-card>
-        <p-card header="Max" [style]="{'width': '25rem', 'margin-bottom': '2em'}">
-            <ng-template pTemplate="header">
-            </ng-template>
-            <p>{{maxPrice}}</p>
-        </p-card>
+    <div class="p-d-flex p-flex-column p-flex-md-row">
+        <div class="p-mr-2">Min {{minPrice}}</div>
+        <div class="p-mr-2">Max {{maxPrice}}</div>
     </div>
+
     
     <p-table [value]="data">
         <ng-template pTemplate="header">

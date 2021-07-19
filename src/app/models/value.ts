@@ -4,4 +4,5 @@ export interface Value {
     datetime_utc: Date;
     geo_id: number;
     geo_name: string;
+    color: string;
 }

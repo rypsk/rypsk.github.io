@@ -49,6 +49,7 @@ export class RedataHomeComponent implements OnInit {
   getData() {
     this.redataService.getData(this.requestDate).subscribe((redata: REData) => {
       this.data = redata.indicator.values;
+      this.prices = [];
       this.data.forEach(value => {
         let price = value.value / 1000;
         this.prices.push(Math.round(price * 100000) / 100000);  
@@ -68,7 +69,7 @@ export class RedataHomeComponent implements OnInit {
       datasets: [
         {
           label: 'Price',
-          data: [this.prices[0],this.prices[1],this.prices[2],this.prices[3],this.prices[4],this.prices[5],this.prices[6],this.prices[7],this.prices[8],this.prices[9],this.prices[10],this.prices[11],this.prices[12],this.prices[13],this.prices[14],this.prices[15],this.prices[16],this.prices[17],this.prices[18],this.prices[19],this.prices[20],this.prices[21],this.prices[22],this.prices[23]],          
+          data: this.prices,          
           fill: false,
           borderColor: '#42A5F5'
         }

@@ -1,5 +1,5 @@
 <p-menubar [model]="items">
-    <input type="text" pInputText placeholder="Search">
+    <!-- <input type="text" pInputText placeholder="Search"> -->
     <button *ngIf="isLoged" (click)="logout()" pButton label="Logout" icon="pi pi-power-off"></button>
     <button *ngIf="!isLoged" (click)="displayDialog()" pButton label="Login" icon="pi pi-user"></button>
 </p-menubar>

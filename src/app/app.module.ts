@@ -23,6 +23,7 @@ import { HttpErrorHandler } from './services/http-error-handler/http-error-handl
 import { MessageService } from './services/message/message.service';
 import { AccordionModule } from 'primeng/accordion';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { MusicComponent } from './modules/music/components/music/music.component';
 
 
 
@@ -36,6 +37,7 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
     HeaderComponent,
     BodyComponent,
     HomeComponent,
+    MusicComponent,
   ],
   imports: [
     BrowserModule,

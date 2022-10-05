@@ -19,7 +19,7 @@ export class MusicComponent implements OnInit {
   }
 
   ngOnInit(): void {  
-    this.home = {icon: 'pi pi-home', routerLink: '/'};    
+    this.home = {icon: 'pi pi-home', routerLink: '/home'};    
   }
 
 }

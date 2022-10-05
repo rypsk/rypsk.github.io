@@ -50,7 +50,7 @@ export class RedataHomeComponent implements OnInit {
   ngOnInit(): void {
     this.getData();
     this.applyLightTheme();
-    this.home = {icon: 'pi pi-home', routerLink: '/'};   
+    this.home = {icon: 'pi pi-home', routerLink: '/home'};   
   }
 
   getData() {

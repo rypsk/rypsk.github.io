@@ -24,6 +24,8 @@ import { MessageService } from './services/message/message.service';
 import { AccordionModule } from 'primeng/accordion';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { MusicComponent } from './modules/music/components/music/music.component';
+import { ArtHomeComponent } from './modules/art/components/art-home/art-home.component';
+import { DashboardHomeComponent } from './modules/dashboard/components/dashboard-home/dashboard-home.component';
 
 
 
@@ -38,6 +40,8 @@ import { MusicComponent } from './modules/music/components/music/music.component
     BodyComponent,
     HomeComponent,
     MusicComponent,
+    ArtHomeComponent,
+    DashboardHomeComponent
   ],
   imports: [
     BrowserModule,

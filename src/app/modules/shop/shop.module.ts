@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ShopRoutingModule } from './shop-routing.module';
 import { ShopHomeComponent } from './components/shop-home/shop-home.component';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { ShopHomeComponent } from './components/shop-home/shop-home.component';
   ],
   imports: [
     CommonModule,
-    ShopRoutingModule
+    ShopRoutingModule,
+    BreadcrumbModule
   ]
 })
 export class ShopModule { }

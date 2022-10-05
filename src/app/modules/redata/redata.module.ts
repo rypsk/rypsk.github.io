@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { ChartModule } from 'primeng/chart';
 import { CardModule } from 'primeng/card';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
 
 
 
@@ -27,7 +28,8 @@ import { CardModule } from 'primeng/card';
     FormsModule,
     TableModule,
     ChartModule,
-    CardModule
+    CardModule,
+    BreadcrumbModule
   ]
 })
 export class RedataModule { }

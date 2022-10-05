@@ -40,6 +40,7 @@ export class MenuComponent implements OnInit {
       {
         label: 'ART',
         icon: 'pi pi-fw pi-palette',
+        routerLink: ['art']
       },
       {
         label: 'REData',
@@ -53,7 +54,8 @@ export class MenuComponent implements OnInit {
       },
       {
         label: 'DASHBOARD',
-        icon: 'pi pi-fw pi-sitemap'
+        icon: 'pi pi-fw pi-sitemap',
+        routerLink: ['dashboard']
       }
     ];
   }

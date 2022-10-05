@@ -11,20 +11,20 @@ export class BodyComponent implements OnInit {
 
   isLoged: boolean = false;
   isAdmin: boolean = false;
-  items: MenuItem[];
+  breadcrumbItems: MenuItem[];
+  home!: MenuItem;
 
   constructor(private loginService: LoginService) {
     this.isLoged = this.loginService.isLoged;
     this.isAdmin = this.loginService.isAdmin;
-    this.items = [];
+    this.breadcrumbItems = [];
    }
 
   ngOnInit(): void {
-    this.items = [
-      {label:'rypsk'},
-      {label:'REData'},
-      {label:'Home'}
-  ];
+  //   this.items = [
+  //     {label:'REData'}
+  // ];
+  this.home = {icon: 'pi pi-home', routerLink: '/'};
   }
 
 }

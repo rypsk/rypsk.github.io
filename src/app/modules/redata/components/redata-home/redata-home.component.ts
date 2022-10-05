@@ -6,6 +6,8 @@ import { MessageService } from 'src/app/services/message/message.service';
 import { RedataService } from '../../services/redata.service';
 import { from } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { MenuItem } from 'primeng/api/menuitem';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -24,9 +26,11 @@ export class RedataHomeComponent implements OnInit {
   chartData: any;
   minPrice: any;
   maxPrice: any;
+  breadcrumbItems!: MenuItem[];
+  home!: MenuItem;
 
 
-  constructor(private redataService: RedataService, private messageService: MessageService) {
+  constructor(private redataService: RedataService, private messageService: MessageService, private activatedRoute:ActivatedRoute) {
     this.requestDate = new Date;
     this.maxDate = new Date;
     let hours = this.maxDate.getHours();
@@ -38,12 +42,15 @@ export class RedataHomeComponent implements OnInit {
     // } else {
       // this.maxDate = new Date();
     // }
+    this.activatedRoute.data.subscribe(data=>{
+      this.breadcrumbItems = [{label:data.breadcrumbItems}];
+      console.log(data)});
   }
 
   ngOnInit(): void {
     this.getData();
     this.applyLightTheme();
-    
+    this.home = {icon: 'pi pi-home', routerLink: '/'};   
   }
 
   getData() {

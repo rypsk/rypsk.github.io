@@ -18,7 +18,6 @@ export class RedataHomeComponent implements OnInit {
   data: Value[] = [];
   prices: number[] = [];
   pricesAux: number[] = [];
-  hours: Date[] = [];
   maxDate: Date;
   requestDate: Date;
   chartOptions: any;
@@ -40,9 +39,9 @@ export class RedataHomeComponent implements OnInit {
     console.log('Server time: ' + hours + ':' + minutes);
 
     this.maxDate = new Date(this.requestDate.getTime() + (1000 * 60 * 60 * 24));
+    
     this.activatedRoute.data.subscribe(data => {
       this.breadcrumbItems = [{ label: data.breadcrumbItems }];
-      console.log(data)
     });
   }
 
@@ -76,19 +75,23 @@ export class RedataHomeComponent implements OnInit {
     this.colorMap.set(24,'EB0200');
   }
 
+  reset(){
+    this.data = [];
+    this.prices = [];
+    this.pricesAux = [];
+  }
+
   getData() {
+    this.reset();
+    console.log(this.requestDate);
     this.redataService.getData(this.requestDate).subscribe((redata: REData) => {
       this.data = redata.indicator.values;
-      // console.log('Data: ' + this.data);
-      this.prices = [];
-
-
+      
       this.data.forEach(value => {
         let price = value.value / 1000;
         value.color = 'red';
         this.prices.push(Math.round(price * 100000) / 100000);
         this.pricesAux.push(Math.round(price * 100000) / 100000);
-        this.hours.push(value.datetime);
       });
       let pricesSorted = [];
       pricesSorted = this.pricesAux.sort(function (a, b) { return a - b });

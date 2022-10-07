@@ -11,6 +11,7 @@ import { TableModule } from 'primeng/table';
 import { ChartModule } from 'primeng/chart';
 import { CardModule } from 'primeng/card';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { ChipModule } from 'primeng/chip';
 
 
 
@@ -29,7 +30,8 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
     TableModule,
     ChartModule,
     CardModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    ChipModule
   ]
 })
 export class RedataModule { }

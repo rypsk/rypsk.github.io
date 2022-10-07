@@ -5,4 +5,5 @@ export interface Value {
     geo_id: number;
     geo_name: string;
     color: string;
+    position: number;
 }

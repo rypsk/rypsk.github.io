@@ -6,7 +6,7 @@
     </div>
     
     <div class="p-field p-col-12 p-md-4">
-        <p-calendar [(ngModel)]="requestDate" dateFormat="yy-mm-dd" (onSelect)="getData()" [maxDate]="maxDate" [showIcon]="true"></p-calendar>        
+        <p-calendar [(ngModel)]="requestDate" [readonlyInput]="true"  [touchUI]="true" dateFormat="yy-mm-dd" (onSelect)="getData()" [maxDate]="maxDate" [showIcon]="true"></p-calendar>  
     </div>
     
     <p></p>
@@ -40,7 +40,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-data>
             <tr>
-                <td [class]="getClassColor(data)">{{data.datetime | date:'MMM d, y, HH:mm'}}</td>
+                <td [class]="getClassColor(data)">{{data.datetime | date:'d MMM y - HH:mm'}}</td>
                 <td [class]="getClassColor(data)">{{data.value / 1000 | number:'1.5'}} €/kWh</td>
             </tr>
         </ng-template>

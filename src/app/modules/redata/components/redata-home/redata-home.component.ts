@@ -5,7 +5,6 @@ import { MessageService } from 'src/app/services/message/message.service';
 import { RedataService } from '../../services/redata.service';
 import { MenuItem } from 'primeng/api/menuitem';
 import { ActivatedRoute } from '@angular/router';
-import { DatePipe } from '@angular/common';
 
 
 @Component({

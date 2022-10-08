@@ -42,4 +42,10 @@ export class LoginService {
     return this.isLoged;
   }
 
+  forcedLogin(){
+    this.isLoged = true;
+    this.isAdmin = false;
+    return this.isLoged;
+  }
+
 }

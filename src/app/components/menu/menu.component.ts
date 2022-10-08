@@ -60,6 +60,10 @@ export class MenuComponent implements OnInit {
     ];
   }
 
+  forcedLogin(){
+    this.isLoged = this.loginService.forcedLogin();
+  }
+
   displayDialog() {
     this.showDialog = true;
   }

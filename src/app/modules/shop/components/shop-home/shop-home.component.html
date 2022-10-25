@@ -1,2 +1,12 @@
 <p-breadcrumb [model]="breadcrumbItems" [home]="home"></p-breadcrumb>
-<p>shop-home works!</p>
+<div style='padding-top : 20px'>
+    <p-card header="Tienda" subheader="online" [style]="{width: '360px'}" styleClass="p-card-shadow">
+        <ng-template pTemplate="header">
+            <img alt="Card" src="assets/usercard.png">
+        </ng-template>
+        <p>Entra en nuestra tienda y llena tu armario con nuestros emblemáticos estilos. ¡Descubre ya tu nueva prenda favorita! La tienda online ofrece una selección única de los últimos productos rypsk® del mercado.</p>
+        <ng-template pTemplate="footer">
+            <p-button label="Tienda" icon="pi pi-check" (onClick)="navigateTo()"></p-button>
+        </ng-template>
+    </p-card>
+</div>

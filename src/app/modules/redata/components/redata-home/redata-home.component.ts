@@ -115,7 +115,11 @@ export class RedataHomeComponent implements OnInit {
   }
 
   getClassColor(element: Value): string {
-    return 'color-'+element.position;
+    let currentHour = new Date().getHours();
+    let elementHour = new Date(element.datetime).getHours();
+    let isNow = currentHour == elementHour;
+    let bold = isNow ? " bold" : "";
+    return 'color-'+element.position + bold;
   }
 
   fillChart() {

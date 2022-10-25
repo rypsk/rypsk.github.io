@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api/menuitem';
 
 @Component({
@@ -12,7 +12,7 @@ export class ShopHomeComponent implements OnInit {
   breadcrumbItems!: MenuItem[];
   home!: MenuItem;
 
-  constructor(private activatedRoute:ActivatedRoute) { 
+  constructor(private activatedRoute:ActivatedRoute, public router: Router) { 
     this.activatedRoute.data.subscribe(data=>{
       this.breadcrumbItems = [{label:data.breadcrumbItems}];
       console.log(data)});
@@ -21,6 +21,10 @@ export class ShopHomeComponent implements OnInit {
   ngOnInit(): void {  
     this.home = {icon: 'pi pi-home', routerLink: '/home'};    
     
+  }
+
+  navigateTo(){
+    document.location.href = 'https://teespring.com/stores/rypsk';
   }
 
 }

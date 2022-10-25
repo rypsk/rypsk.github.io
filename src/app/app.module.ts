@@ -26,7 +26,7 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { MusicComponent } from './modules/music/components/music/music.component';
 import { ArtHomeComponent } from './modules/art/components/art-home/art-home.component';
 import { DashboardHomeComponent } from './modules/dashboard/components/dashboard-home/dashboard-home.component';
-
+import { CardModule } from 'primeng/card';
 
 
 
@@ -41,7 +41,7 @@ import { DashboardHomeComponent } from './modules/dashboard/components/dashboard
     HomeComponent,
     MusicComponent,
     ArtHomeComponent,
-    DashboardHomeComponent
+    DashboardHomeComponent, 
   ],
   imports: [
     BrowserModule,
@@ -58,7 +58,8 @@ import { DashboardHomeComponent } from './modules/dashboard/components/dashboard
     HttpClientModule,
     HttpClientJsonpModule,
     AccordionModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    CardModule
   ],
   providers: [
     HttpErrorHandler,

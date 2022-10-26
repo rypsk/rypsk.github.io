@@ -3,6 +3,7 @@ import { MenuItem } from 'primeng/api';
 import { LoginService } from 'src/app/services/login/login.service';
 import { MessageService } from 'primeng/api';
 import { User } from 'src/app/models/user';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-menu',
@@ -17,43 +18,60 @@ export class MenuComponent implements OnInit {
   showDialog: boolean = false;
   user: string = '';
   password: string = ' ';
+  translate!: TranslateService;
+  musicLabel: string = '';
+  shopLabel: string = '';
+  artLabel: string = '';
+  homeLabel: string = '';
+  dashboardLabel: string = '';
+  redataLabel: string = '';
 
-  constructor(private loginService: LoginService, private messageService: MessageService) { }
-
-  ngOnInit(): void {
-    this.fillMenuItems();
-    this.getUsers();
+  constructor(translate: TranslateService, private loginService: LoginService, private messageService: MessageService) { 
+    this.translate = translate;
   }
 
-  fillMenuItems() {
+  ngOnInit(): void {
+    this.translate.stream(['music','shop','art','home','dashboard','redata']).subscribe(words => {
+      this.musicLabel = words['music'];
+      this.shopLabel = words['shop'];
+      this.artLabel = words['art'];
+      this.homeLabel = words['home'];
+      this.dashboardLabel = words['dashboard'];
+      this.redataLabel = words['redata'];
+      this.fillMenuItems();
+      // this.getUsers();
+    });
+  }
+
+  fillMenuItems() {    
     this.items = [
       {
-        label: 'RYPSK',
-        icon: 'pi pi-spin pi-spinner',
+        label: this.homeLabel,
+        icon: 'pi pi-home',
         routerLink: ['home']
       },
       {
-        label: 'SHOP',
+        label: this.shopLabel,
         icon: 'pi pi-fw pi-shopping-cart',
         routerLink: ['shop']
       },
       {
-        label: 'ART',
+        label: this.artLabel,
         icon: 'pi pi-fw pi-palette',
         routerLink: ['art']
       },
       {
-        label: 'REData',
+        label: this.redataLabel,
         icon: 'pi pi-fw pi-share-alt',
         routerLink: ['redata']
       },
       {
-        label: 'MUSIC',
+        label: this.musicLabel,
         icon: 'pi pi-fw pi-sliders-v',
         routerLink: ['music']
       },
       {
-        label: 'DASHBOARD',
+        label: this.dashboardLabel,
         icon: 'pi pi-fw pi-sitemap',
         routerLink: ['dashboard']
       }
@@ -95,6 +113,10 @@ export class MenuComponent implements OnInit {
 
   getUsername(){
     return this.loginService.getUsernameLogged();
+  }
+
+  useLanguage(language: string): void {
+    this.translate.use(language);
   }
 
 }

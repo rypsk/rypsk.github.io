@@ -3,6 +3,16 @@
         <button *ngIf="isLoged" [ngClass]="'userLoggedButton'" pButton label="{{getUsername()}}" icon="pi pi-user"></button>
         <button *ngIf="isLoged" [ngClass]="'offButton'" (click)="logout()" pButton icon="pi pi-power-off"></button>
         <button *ngIf="!isLoged" (click)="forcedLogin()" pButton icon="pi pi-power-off"></button>
+        <p-button *ngIf="translate.currentLang == 'es';" styleClass="px-2" label="ES" [ngClass]="'languageButton'" (click)="useLanguage('en')">
+            <!-- <ng-template pTemplate="content">
+                <img alt="logo" src="assets/images/es.svg" style="width: 1.6rem; height: 1.3rem"/>
+            </ng-template> -->
+        </p-button>
+        <p-button *ngIf="translate.currentLang == 'en';" styleClass="px-2" label="EN" [ngClass]="'languageButton'" (click)="useLanguage('es')">
+            <!-- <ng-template pTemplate="content">
+                <img alt="logo" src="assets/images/en.svg" style="width: 1.6rem; height: 1.3rem"/>
+            </ng-template> -->
+        </p-button>
     </div>    
 </p-menubar>
 

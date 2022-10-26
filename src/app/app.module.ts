@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
+import { HttpClientJsonpModule, HttpClientModule, HttpClient  } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -28,9 +28,13 @@ import { ArtHomeComponent } from './modules/art/components/art-home/art-home.com
 import { DashboardHomeComponent } from './modules/dashboard/components/dashboard-home/dashboard-home.component';
 import { CardModule } from 'primeng/card';
 import {DividerModule} from 'primeng/divider';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-
-
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -61,7 +65,15 @@ import {DividerModule} from 'primeng/divider';
     AccordionModule,
     BreadcrumbModule,
     CardModule,
-    DividerModule
+    DividerModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+    }),
   ],
   providers: [
     HttpErrorHandler,

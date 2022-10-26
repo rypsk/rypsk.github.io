@@ -93,4 +93,8 @@ export class MenuComponent implements OnInit {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
   }
 
+  getUsername(){
+    return this.loginService.getUsernameLogged();
+  }
+
 }

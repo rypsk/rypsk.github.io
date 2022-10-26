@@ -136,7 +136,7 @@ export class RedataHomeComponent implements OnInit {
     }
   }
 
-  applyLightTheme() {
+  applyLightTheme2() {
     this.chartOptions = {
       legend: {
         labels: {
@@ -157,5 +157,53 @@ export class RedataHomeComponent implements OnInit {
       }
     };
   }
+
+  applyLightTheme() {
+    this.chartOptions = {
+      stacked: false,
+      plugins: {
+          legend: {
+              labels: {
+                  color: '#495057'
+              }
+          }
+      },
+      scales: {
+          x: {
+              ticks: {
+                  color: '#495057'
+              },
+              grid: {
+                  color: '#ebedef'
+              }
+          },
+          y: {
+              type: 'linear',
+              display: true,
+              position: 'left',
+              ticks: {
+                  color: '#495057'
+              },
+              grid: {
+                  color: '#ebedef'
+              }
+          },
+          y1: {
+              type: 'linear',
+              display: true,
+              position: 'right',
+              ticks: {
+                  color: '#495057'
+              },
+              grid: {
+                  drawOnChartArea: false,
+                  color: '#ebedef'
+              }
+          }
+      }
+  };
+  }
+
+  
 
 }

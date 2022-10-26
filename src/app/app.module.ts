@@ -27,6 +27,7 @@ import { MusicComponent } from './modules/music/components/music/music.component
 import { ArtHomeComponent } from './modules/art/components/art-home/art-home.component';
 import { DashboardHomeComponent } from './modules/dashboard/components/dashboard-home/dashboard-home.component';
 import { CardModule } from 'primeng/card';
+import {DividerModule} from 'primeng/divider';
 
 
 
@@ -59,7 +60,8 @@ import { CardModule } from 'primeng/card';
     HttpClientJsonpModule,
     AccordionModule,
     BreadcrumbModule,
-    CardModule
+    CardModule,
+    DividerModule
   ],
   providers: [
     HttpErrorHandler,

@@ -48,4 +48,8 @@ export class LoginService {
     return this.isLoged;
   }
 
+  getUsernameLogged(){
+    return "rypsk";
+  }
+
 }

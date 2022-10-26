@@ -4,6 +4,7 @@ import { LoginService } from 'src/app/services/login/login.service';
 import { MessageService } from 'primeng/api';
 import { User } from 'src/app/models/user';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -26,7 +27,7 @@ export class MenuComponent implements OnInit {
   dashboardLabel: string = '';
   redataLabel: string = '';
 
-  constructor(translate: TranslateService, private loginService: LoginService, private messageService: MessageService) { 
+  constructor(translate: TranslateService, private loginService: LoginService, private messageService: MessageService, private router: Router) { 
     this.translate = translate;
   }
 
@@ -105,6 +106,7 @@ export class MenuComponent implements OnInit {
 
   logout() {
     this.isLoged = this.loginService.logout();
+    this.router.navigateByUrl('/home');
   }
 
   showError(message: string) {

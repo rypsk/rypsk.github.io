@@ -1,0 +1,13 @@
+{
+    "welcomeMessage": "Thanks for joining, {{ firstName }}! It's great to have you!",
+    "login": {
+      "username": "Introduce tu usuario",
+      "password": "Introduce tu contraseña"
+    },
+    "music": "Música",
+    "shop": "Tienda",
+    "home": "Inicio",
+    "art": "Arte",
+    "redata": "REData",
+    "dashboard": "Administración"
+}

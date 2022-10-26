@@ -13,6 +13,5 @@ export class AppComponent {
     translate.addLangs(['en', 'es']);
     translate.setDefaultLang('es');
     translate.use('es');
-    this.router.navigateByUrl('/home');
   }
 }

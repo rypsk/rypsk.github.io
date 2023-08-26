@@ -12,8 +12,8 @@ import { ChartModule } from 'primeng/chart';
 import { CardModule } from 'primeng/card';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { ChipModule } from 'primeng/chip';
-
-
+import { TabViewModule } from 'primeng/tabview';
+import { PanelModule } from 'primeng/panel';
 
 
 
@@ -32,7 +32,9 @@ import { ChipModule } from 'primeng/chip';
     ChartModule,
     CardModule,
     BreadcrumbModule,
-    ChipModule
+    ChipModule,
+    TabViewModule,
+    PanelModule
   ]
 })
 export class RedataModule { }

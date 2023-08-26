@@ -6,22 +6,25 @@ import { LoginService } from 'src/app/services/login/login.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<unknown>, CanLoad {
+
+export class AdminAuthGuard implements CanActivate, CanActivateChild, CanDeactivate<unknown>, CanLoad {
 
   constructor(private loginService: LoginService) {
 
-   }
+  }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.loginService.isLoged;
+      return this.loginService.isAdmin;
   }
+
   canActivateChild(
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return true;
   }
+
   canDeactivate(
     component: unknown,
     currentRoute: ActivatedRouteSnapshot,
@@ -29,9 +32,11 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<u
     nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return true;
   }
+
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return true;
   }
+  
 }

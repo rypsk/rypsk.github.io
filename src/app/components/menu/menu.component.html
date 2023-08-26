@@ -1,32 +1,24 @@
 <p-menubar [model]="items">
     <div>
-        <button *ngIf="isLoged" [ngClass]="'userLoggedButton'" pButton label="{{getUsername()}}" icon="pi pi-user"></button>
-        <button *ngIf="isLoged" [ngClass]="'offButton'" (click)="logout()" pButton icon="pi pi-power-off"></button>
-        <button *ngIf="!isLoged" (click)="forcedLogin()" pButton icon="pi pi-power-off"></button>
-        <p-button *ngIf="translate.currentLang == 'es';" styleClass="px-2" label="ES" [ngClass]="'languageButton'" (click)="useLanguage('en')">
-            <!-- <ng-template pTemplate="content">
-                <img alt="logo" src="assets/images/es.svg" style="width: 1.6rem; height: 1.3rem"/>
-            </ng-template> -->
-        </p-button>
-        <p-button *ngIf="translate.currentLang == 'en';" styleClass="px-2" label="EN" [ngClass]="'languageButton'" (click)="useLanguage('es')">
-            <!-- <ng-template pTemplate="content">
-                <img alt="logo" src="assets/images/en.svg" style="width: 1.6rem; height: 1.3rem"/>
-            </ng-template> -->
-        </p-button>
-    </div>    
+        <button *ngIf="isLogged()" [ngClass]="'userLoggedButton'" pButton label="{{getUsername()}}" icon="pi pi-user"></button>
+        <button *ngIf="isLogged()" [ngClass]="'offButton'" (click)="logout()" pButton icon="pi pi-power-off"></button>
+        <button *ngIf="!isLogged()" (click)="showDialog()" pButton icon="pi pi-power-off"></button>
+        <p-button *ngIf="translate.currentLang == 'es';" styleClass="px-2" label="ES" [ngClass]="'languageButton'" (click)="useLanguage('en')"></p-button>
+        <p-button *ngIf="translate.currentLang == 'en';" styleClass="px-2" label="EN" [ngClass]="'languageButton'" (click)="useLanguage('es')"></p-button>
+        <p-button label=" " (click)="test1()" badge="1" styleClass="ml-2" icon="pi pi-bolt"></p-button>
+        <p-button label=" " (click)="test2()" badge="2" styleClass="ml-2" icon="pi pi-bolt"></p-button>
+    </div>
 </p-menubar>
 
-<p-dialog header="LOGIN" [(visible)]="showDialog" [modal]="true" [style]="{width: '20vw'}" [baseZIndex]="10000"
-    [draggable]="false" [resizable]="false">
-    <span class="p-float-label">
-        <input id="float-input" type="text" pInputText [(ngModel)]="user"> 
-        <label for="float-input">User</label>
-    </span>
-    <span class="p-float-label">
-        <p-password id="float-input-pass"  [(ngModel)]="password" [feedback]="false"></p-password>
-        <label for="float-input-pass"></label>
-    </span>
-    <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="login()" label="Send" styleClass="p-button-text"></p-button>
-    </ng-template>
+<p-dialog header="Login" [(visible)]="displayDialog" [modal]="true" [style]="{width: '20vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+    <p-tabView>
+        <p-tabPanel header="Sign-In">
+            <app-signin (onSubmitEvent)="onSignInFormSubmit($event)"></app-signin>
+        </p-tabPanel>
+        <p-tabPanel header="Sign-Up">
+            <app-signup (onSubmitEvent)="onSignUpFormSubmit($event)"></app-signup>
+        </p-tabPanel>
+    </p-tabView>
 </p-dialog>
+
+<p-toast position="center"></p-toast>

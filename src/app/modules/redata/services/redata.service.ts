@@ -15,14 +15,15 @@ export class RedataService {
   private redataApiUrl = environment.redataApiUrl;
 
   constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler) { 
-    this.handleError = httpErrorHandler.createHandleError('LoginService')
+    this.handleError = httpErrorHandler.createHandleError('RedataService')
   }
 
   getData(requestDate: Date): Observable<any>{
     let startDate = requestDate.toLocaleDateString() + 'T00:00:00';
     // let endDate = requestDate.toDateString() + 'T23:59:59';
-    let end_date = new Date(requestDate.getTime() + (1000 * 60 * 60 * 24));
-    let endDate = end_date.toLocaleDateString() + 'T00:00:00';
+    // let end_date = new Date(requestDate.getTime() + (1000 * 60 * 60 * 24));
+    let end_date = new Date(requestDate.getTime());
+    let endDate = end_date.toLocaleDateString() + 'T23:59:59';
     const url = 'https://api.esios.ree.es/indicators/1001';
     // const url = 'https://apip.esios.ree.es/indicators/1001';
     const options = { 
@@ -36,7 +37,7 @@ export class RedataService {
     console.log(url);
     return this.http.get(url, options)
       .pipe(
-        catchError(this.handleError('REData'))
+        catchError(this.handleError('getREData'))
       );
   }
 }

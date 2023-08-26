@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientJsonpModule, HttpClientModule, HttpClient  } from '@angular/common/http';
+import { HttpClientJsonpModule, HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,20 +16,27 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
 import { PasswordModule } from 'primeng/password';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { RippleModule } from 'primeng/ripple';
+import { MessagesModule } from 'primeng/messages';
 import { HttpErrorHandler } from './services/http-error-handler/http-error-handler.service';
 import { MessageService } from './services/message/message.service';
 import { AccordionModule } from 'primeng/accordion';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { TabViewModule } from 'primeng/tabview';
 import { MusicComponent } from './modules/music/components/music/music.component';
 import { ArtHomeComponent } from './modules/art/components/art-home/art-home.component';
 import { DashboardHomeComponent } from './modules/dashboard/components/dashboard-home/dashboard-home.component';
 import { CardModule } from 'primeng/card';
-import {DividerModule} from 'primeng/divider';
+import { DividerModule } from 'primeng/divider';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SignupComponent } from './components/forms/signup/signup.component';
+import { SigninComponent } from './components/forms/signin/signin.component';
+import { BadgeModule } from 'primeng/badge';
+import { TooltipModule } from 'primeng/tooltip';
+
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -46,7 +53,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeComponent,
     MusicComponent,
     ArtHomeComponent,
-    DashboardHomeComponent, 
+    DashboardHomeComponent,
+    SignupComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
@@ -67,13 +76,21 @@ export function HttpLoaderFactory(http: HttpClient) {
     CardModule,
     DividerModule,
     HttpClientModule,
+    MessagesModule,
+    TabViewModule,
+    ReactiveFormsModule,
+    BadgeModule,
+    TooltipModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
       }
     }),
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ],
   providers: [
     HttpErrorHandler,

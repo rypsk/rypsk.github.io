@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  rypskApiUrl: 'http://localhost:4080/rypsk/api',
-  rypskApiUsersUrl: 'http://localhost:4080/rypsk/api/users',
+  rypskApiUrl: 'http://localhost:9190/api/v1',
   redataApiUrl: 'api.esios.ree.es'
 
 };

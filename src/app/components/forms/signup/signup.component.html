@@ -1,0 +1,8 @@
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+    <input placeholder="Username" pInputText pTooltip="Enter your username" tooltipPosition="top" tooltipEvent="focus" type="text" pInputText formControlName="username">    
+    <input placeholder="Email" pInputText pTooltip="Enter your email" tooltipPosition="top" tooltipEvent="focus" type="text" pInputText formControlName="email">
+    <input placeholder="Password" pInputText pTooltip="Enter your password" tooltipPosition="top" tooltipEvent="focus" type="password" pInputText formControlName="password">
+    <input placeholder="Password Confirm" pInputText pTooltip="Confirm your password" tooltipPosition="top" tooltipEvent="focus" type="password" pInputText formControlName="passwordConfirm">
+    <p></p>
+    <p-button icon="pi pi-check" type="submit" [disabled]="!signUpForm.valid" label="Submit"></p-button>
+</form>

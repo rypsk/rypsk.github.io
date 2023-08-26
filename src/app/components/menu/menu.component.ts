@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { LoginService } from 'src/app/services/login/login.service';
-import { MessageService } from 'primeng/api';
-import { User } from 'src/app/models/user';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
+import * as bcrypt from 'bcryptjs';
+import { FormGroup } from '@angular/forms';
+import { SignResponse } from 'src/app/models/signResponse';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-menu',
@@ -15,10 +18,7 @@ import { Router } from '@angular/router';
 export class MenuComponent implements OnInit {
 
   items: MenuItem[] = [];
-  isLoged: boolean = false;
-  showDialog: boolean = false;
-  user: string = '';
-  password: string = ' ';
+  displayDialog: boolean = false;
   translate!: TranslateService;
   musicLabel: string = '';
   shopLabel: string = '';
@@ -27,12 +27,14 @@ export class MenuComponent implements OnInit {
   dashboardLabel: string = '';
   redataLabel: string = '';
 
-  constructor(translate: TranslateService, private loginService: LoginService, private messageService: MessageService, private router: Router) { 
+
+
+  constructor(translate: TranslateService, private loginService: LoginService, private messageService: MessageService, private router: Router, private http: HttpClient) {
     this.translate = translate;
   }
 
   ngOnInit(): void {
-    this.translate.stream(['music','shop','art','home','dashboard','redata']).subscribe(words => {
+    this.translate.stream(['music', 'shop', 'art', 'home', 'dashboard', 'redata']).subscribe(words => {
       this.musicLabel = words['music'];
       this.shopLabel = words['shop'];
       this.artLabel = words['art'];
@@ -40,11 +42,10 @@ export class MenuComponent implements OnInit {
       this.dashboardLabel = words['dashboard'];
       this.redataLabel = words['redata'];
       this.fillMenuItems();
-      // this.getUsers();
     });
   }
 
-  fillMenuItems() {    
+  fillMenuItems() {
     this.items = [
       {
         label: this.homeLabel,
@@ -79,46 +80,96 @@ export class MenuComponent implements OnInit {
     ];
   }
 
-  forcedLogin(){
-    this.isLoged = this.loginService.forcedLogin();
+  showDialog() {
+    this.displayDialog = true;
   }
 
-  displayDialog() {
-    this.showDialog = true;
+  onSignInFormSubmit(signInForm: FormGroup) {
+    console.log('onSignInFormSubmit: ' + signInForm.value.username + '@' + signInForm.value.password);
+    this.signIn(signInForm.value.username, signInForm.value.password)
   }
 
-  login() {
-    console.log('Login() method with ' + this.user + ', ' + this.password);
-
-    let u: any = null;
-    this.loginService.login(this.user, this.password).subscribe(
-      (data) => u = data
-    )
-    console.log(u);
-    this.showDialog = false;
+  signIn(username: string, password: string) {
+    console.log('signIn: ' + username + '@' + password);    
+    this.loginService.signIn(username, password).subscribe((data: any) => {
+      let signResponse: SignResponse = data;
+      console.log(signResponse.username + ' signed');
+      if (signResponse == null) {
+        this.showMessage('error', 'Error', 'No existe usuario con el nombre y password indicados.');
+      }
+      if (!signResponse.isEnabled) {
+        this.showMessage('error', 'Error', 'Email no verificado. Por favor revise su bandeja de entrada.');
+      } else {
+        this.loginService.setUserLogged(signResponse);
+      }
+    });
+    this.displayDialog = false;
   }
 
-  getUsers() {
-    this.loginService.getUsers().subscribe((data: User[]) => {
-      console.log(data);
-    })
+  onSignUpFormSubmit(signUpForm: FormGroup) {
+    console.log('onSignUpFormSubmit: ' + signUpForm.value.username + '@' + signUpForm.value.password + '-' + signUpForm.value.email);
+    if(signUpForm.value.password == signUpForm.value.passwordConfirm){
+      this.signUp(signUpForm.value.username, signUpForm.value.email, this.encode(signUpForm.value.password))
+    }else{
+      this.showMessage('error', 'Error', 'Los passwords no son iguales');
+    }    
+  }
+
+  signUp(username: string, email: string, password: string) {
+    console.log('signUp() method with');
+    this.loginService.signUp(username, email, password, true).subscribe((data: any) => {
+      this.displayDialog = false;
+      let signResponse: SignResponse = data;
+      console.log(signResponse.username + ' registered');
+      if (signResponse != null) {
+        this.showMessage('info', 'Info', 'Se ha enviado un email a ' + signResponse.email + ', por favor revise su bandeja de entrada y active su cuenta.')
+      }else{
+        this.showMessage('error', 'Error', 'Ha habido un error al hacer el registro.');
+      }
+    });        
+  }
+
+  isLogged() {
+    return this.loginService.isLogged;
   }
 
   logout() {
-    this.isLoged = this.loginService.logout();
+    this.loginService.logout();
     this.router.navigateByUrl('/home');
   }
 
-  showError(message: string) {
-    this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
+  showMessage(type: string, summary: string, message: string) {
+    this.messageService.add({ severity: type, summary: summary, detail: message });
   }
 
-  getUsername(){
-    return this.loginService.getUsernameLogged();
+  getUsername() {
+    return this.loginService.username;
   }
 
   useLanguage(language: string): void {
     this.translate.use(language);
+  }
+
+  test1() {
+
+    this.loginService.users().subscribe((data: any) => {
+      console.log(data);
+    });        
+
+  }
+
+  test2() {
+
+    this.loginService.dashboardsUsers().subscribe((data: any) => {
+      console.log(data);
+    });        
+
+  }
+
+  encode(value: string): string {
+    let salt = bcrypt.genSaltSync(10);
+    let hash = bcrypt.hashSync(value, salt);
+    return hash;
   }
 
 }

@@ -5,6 +5,7 @@ import { MessageService } from 'src/app/services/message/message.service';
 import { RedataService } from '../../services/redata.service';
 import { MenuItem } from 'primeng/api/menuitem';
 import { ActivatedRoute } from '@angular/router';
+import { LoginService } from 'src/app/services/login/login.service';
 
 
 @Component({
@@ -30,7 +31,7 @@ export class RedataHomeComponent implements OnInit {
   colorMap: Map<number,string> = new Map();
 
 
-  constructor(private redataService: RedataService, private messageService: MessageService, private activatedRoute: ActivatedRoute) {
+  constructor(private redataService: RedataService, private loginService: LoginService, private messageService: MessageService, private activatedRoute: ActivatedRoute) {
     this.requestDate = new Date;
     this.maxDate = new Date;
     let hours = this.maxDate.getHours();
@@ -204,6 +205,9 @@ export class RedataHomeComponent implements OnInit {
   };
   }
 
+  isLogged(){
+    return this.loginService.isLogged;
+  }
   
 
 }

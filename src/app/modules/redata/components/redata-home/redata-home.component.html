@@ -1,49 +1,63 @@
 <p-breadcrumb [model]="breadcrumbItems" [home]="home"></p-breadcrumb>
-<div class="card">
+<p-tabView>
+    <p-tabPanel header="REData">
+        <div class="card">
 
-    <div>
-        <p></p>
-    </div>
-    
-    <div class="p-field p-col-12 p-md-4">
-        <p-calendar [(ngModel)]="requestDate" [readonlyInput]="true"  [touchUI]="true" dateFormat="yy-mm-dd" (onSelect)="getData()" [maxDate]="maxDate" [showIcon]="true"></p-calendar>  
-    </div>
-    
-    <p></p>
+            <div>
+                <p></p>
+            </div>
 
-    <div class="p-d-flex p-flex-column p-flex-md-row">
-        <p-chip label="MIN:  {{minPriceHour | date:'HH:mm'}}h - {{minPrice}} €/kWh" styleClass="color1-chip"></p-chip>
-        <p-chip label="MAX: {{maxPriceHour | date:'HH:mm'}}h - {{maxPrice}} €/kWh" styleClass="color24-chip"></p-chip>
-    </div>
+            <div class="p-field p-col-12 p-md-4">
+                <p-calendar [(ngModel)]="requestDate" [readonlyInput]="true" [touchUI]="true" dateFormat="yy-mm-dd"
+                    (onSelect)="getData()" [maxDate]="maxDate" [showIcon]="true"></p-calendar>
+            </div>
 
-    <div>
-        <p></p>
-    </div>
+            <p></p>
 
-    <div class="card">
-        <p-chart type="line" [data]="chartData" [options]="chartOptions"></p-chart>
-    </div>
+            <div class="p-d-flex p-flex-column p-flex-md-row">
+                <p-chip label="MIN:  {{minPriceHour | date:'HH:mm'}}h - {{minPrice}} €/kWh"
+                    styleClass="color1-chip"></p-chip>
+                <p-chip label="MAX: {{maxPriceHour | date:'HH:mm'}}h - {{maxPrice}} €/kWh"
+                    styleClass="color24-chip"></p-chip>
+            </div>
 
-    <div>
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>
-    </div>
-    
-    <p-table [value]="data" responsiveLayout="scroll">
-        <ng-template pTemplate="header">
-            <tr>
-                <th>Hora</th>
-                <th>Precio</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-data>
-            <tr>
-                <td [class]="getClassColor(data)">{{data.datetime | date:'d MMM y - HH:mm'}}</td>
-                <td [class]="getClassColor(data)">{{data.value / 1000 | number:'1.5'}} €/kWh</td>
-            </tr>
-        </ng-template>
-    </p-table>    
-    
-</div>
+            <div>
+                <p></p>
+            </div>
+
+            <div class="card">
+                <p-chart type="line" [data]="chartData" [options]="chartOptions"></p-chart>
+            </div>
+
+            <div>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+            </div>
+
+            <p-table [value]="data" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Hora</th>
+                        <th>Precio</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-data>
+                    <tr>
+                        <td [class]="getClassColor(data)">{{data.datetime | date:'d MMM y - HH:mm'}}</td>
+                        <td [class]="getClassColor(data)">{{data.value / 1000 | number:'1.5'}} €/kWh</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Options" *ngIf="isLogged()">
+        <p-panel header="Configuration">
+            <div>
+                <p></p>
+            </div>
+        </p-panel>
+    </p-tabPanel>
+</p-tabView>

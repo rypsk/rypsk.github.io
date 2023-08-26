@@ -11,6 +11,8 @@ export class HomeComponent implements OnInit {
 
   breadcrumbItems!: MenuItem[];
   home!: MenuItem;
+  
+
 
   constructor(private activatedRoute:ActivatedRoute) {
     this.activatedRoute.data.subscribe(data=>{

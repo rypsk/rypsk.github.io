@@ -15,7 +15,7 @@ export class BodyComponent implements OnInit {
   home!: MenuItem;
 
   constructor(private loginService: LoginService) {
-    this.isLoged = this.loginService.isLoged;
+    this.isLoged = this.loginService.isLogged;
     this.isAdmin = this.loginService.isAdmin;
     this.breadcrumbItems = [];
    }

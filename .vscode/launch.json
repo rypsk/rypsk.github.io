@@ -8,7 +8,7 @@
             "type": "pwa-chrome",
             "request": "launch",
             "name": "rypsk",
-            "url": "http://localhost:4200",
+            "url": "http://localhost:4500",
             "webRoot": "${workspaceFolder}"
         }
     ]

@@ -5,8 +5,8 @@
         <button *ngIf="!isLogged()" (click)="showDialog()" pButton icon="pi pi-power-off"></button>
         <p-button *ngIf="translate.currentLang == 'es';" styleClass="px-2" label="ES" [ngClass]="'languageButton'" (click)="useLanguage('en')"></p-button>
         <p-button *ngIf="translate.currentLang == 'en';" styleClass="px-2" label="EN" [ngClass]="'languageButton'" (click)="useLanguage('es')"></p-button>
-        <p-button label=" " (click)="test1()" badge="1" styleClass="ml-2" icon="pi pi-bolt"></p-button>
-        <p-button label=" " (click)="test2()" badge="2" styleClass="ml-2" icon="pi pi-bolt"></p-button>
+        <!-- <p-button label=" " (click)="test1()" badge="1" styleClass="ml-2" icon="pi pi-bolt"></p-button>
+        <p-button label=" " (click)="test2()" badge="2" styleClass="ml-2" icon="pi pi-bolt"></p-button> -->
     </div>
 </p-menubar>
 

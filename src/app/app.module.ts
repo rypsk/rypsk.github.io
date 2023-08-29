@@ -36,6 +36,7 @@ import { SignupComponent } from './components/forms/signup/signup.component';
 import { SigninComponent } from './components/forms/signin/signin.component';
 import { BadgeModule } from 'primeng/badge';
 import { TooltipModule } from 'primeng/tooltip';
+import { TableModule } from 'primeng/table';
 
 
 // AoT requires an exported function for factories
@@ -81,6 +82,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReactiveFormsModule,
     BadgeModule,
     TooltipModule,
+    TableModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -42,18 +42,18 @@
     <p-tabPanel header="MasterData">
         <p-accordion>
             <p-accordionTab header="Usuarios">
-                <p-table [value]="users" [tableStyle]="{ 'min-width': '50rem' }">
+                <p-table [columns]="cols" [value]="users" [tableStyle]="{ 'min-width': '50rem' }">
                     <ng-template pTemplate="header" let-columns>
                         <tr>
-                            <th *ngFor="let user of users">
-                                {{ user.username }}
+                            <th *ngFor="let col of columns">
+                                {{ col.header }}
                             </th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-rowData let-columns="columns">
                         <tr>
-                            <td *ngFor="let user of users">
-                                {{ rowData[user.username] }}
+                            <td *ngFor="let col of columns">
+                                {{ rowData[col.field] }}
                             </td>
                         </tr>
                     </ng-template>

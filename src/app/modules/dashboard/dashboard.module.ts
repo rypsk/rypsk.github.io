@@ -5,7 +5,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { HttpClient } from '@angular/common/http';
-import { TableModule } from 'primeng/table';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -20,7 +19,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     CommonModule,
     DashboardRoutingModule,
     BreadcrumbModule,
-    TableModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

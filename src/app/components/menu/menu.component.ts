@@ -21,6 +21,7 @@ export class MenuComponent implements OnInit {
   displayDialog: boolean = false;
   translate!: TranslateService;
   musicLabel: string = '';
+  foodLabel: string = '';
   shopLabel: string = '';
   artLabel: string = '';
   homeLabel: string = '';
@@ -34,13 +35,14 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.translate.stream(['music', 'shop', 'art', 'home', 'dashboard', 'redata']).subscribe(words => {
+    this.translate.stream(['music', 'shop', 'art', 'home', 'dashboard', 'redata', 'food']).subscribe(words => {
       this.musicLabel = words['music'];
       this.shopLabel = words['shop'];
       this.artLabel = words['art'];
       this.homeLabel = words['home'];
       this.dashboardLabel = words['dashboard'];
       this.redataLabel = words['redata'];
+      this.foodLabel = words['food'];
       this.fillMenuItems();
     });
   }
@@ -71,6 +73,11 @@ export class MenuComponent implements OnInit {
         label: this.musicLabel,
         icon: 'pi pi-fw pi-sliders-v',
         routerLink: ['music']
+      },
+      {
+        label: this.foodLabel,
+        icon: 'pi pi-fw pi-chart-pie',
+        routerLink: ['food']
       },
       {
         label: this.dashboardLabel,

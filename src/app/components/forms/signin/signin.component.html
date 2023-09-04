@@ -1,5 +1,5 @@
 <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
-    <input placeholder="Username" pInputText pTooltip="Enter your username" tooltipPosition="top" tooltipEvent="focus" type="text" pInputText formControlName="username">
+    <input placeholder="Username" pInputText pTooltip="Enter your username" tooltipPosition="top" tooltipEvent="focus" type="text" pInputText formControlName="username" [autofocus]="true">
     <input placeholder="Password" pInputText pTooltip="Enter your password" tooltipPosition="top" tooltipEvent="focus" type="password" pInputText formControlName="password">
     <p></p>
     <p-button icon="pi pi-check" type="submit" [disabled]="!signInForm.valid" label="Submit"></p-button>

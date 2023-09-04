@@ -3,7 +3,6 @@ import { MenuItem, MessageService } from 'primeng/api';
 import { LoginService } from 'src/app/services/login/login.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/user';
 import * as bcrypt from 'bcryptjs';
 import { FormGroup } from '@angular/forms';
 import { SignResponse } from 'src/app/models/signResponse';

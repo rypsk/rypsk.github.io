@@ -1,6 +1,9 @@
 <p-panel header="Meal Planning">
     <div>
         <p>Crear menú de la semana:</p>
-        <!-- <p-selectButton [options]="paymentOptions" [(ngModel)]="value" [multiple]="true" optionLabel="name" optionValue="value"></p-selectButton> -->
+        <p-selectButton styleClass="mt-2" [options]="daysOfWeek" [(ngModel)]="selectedDaysOfWeek" [multiple]="true" optionLabel="name" optionValue="value" [disabled]="false"></p-selectButton>
+        <p-selectButton styleClass="mt-2" [options]="mealTypes" [(ngModel)]="selectedMealTypes" [multiple]="true" optionLabel="name" optionValue="value"></p-selectButton>
+        <p-selectButton styleClass="mt-2" [options]="dishTypes" [(ngModel)]="selectedDishTypes" [multiple]="true" optionLabel="name" optionValue="value"></p-selectButton>
+        <p-button styleClass="mt-2" label="Create" (click)="test1()"icon="pi pi-bolt"></p-button>
     </div>
 </p-panel>

@@ -7,6 +7,8 @@ import { PanelModule } from 'primeng/panel';
 import { DropdownModule } from 'primeng/dropdown';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { ButtonModule } from 'primeng/button';
+import { FormsModule } from '@angular/forms';
+import { DividerModule } from 'primeng/divider';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { ButtonModule } from 'primeng/button';
     PanelModule,
     DropdownModule,
     SelectButtonModule,
-    ButtonModule
+    ButtonModule,
+    FormsModule,
+    DividerModule,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

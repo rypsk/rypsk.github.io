@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { MenuItem } from 'primeng/api/menuitem';
-import { Types } from 'src/app/models/types';
-
-interface City {
-  name: string;
-  code: string;
-}
 
 @Component({
   selector: 'app-food-home',
@@ -16,67 +11,55 @@ export class FoodHomeComponent implements OnInit {
 
   breadcrumbItems!: MenuItem[];
   home!: MenuItem;
-  mealTypes: Types[] = [];
+  selectedMealTypes: string = '';
+  selectedDaysOfWeek: string = '';
+  selectedDishTypes: string = '';
+  mealTypes: any[] = [];
+  daysOfWeek: any[] = [];
+  dishTypes: any[] = [];
+  translate: TranslateService;
+  mealPlanningLabel: string = '';
 
-  selectedMealType?: Types;
-
-  cities: City[] = [];
-
-  // selectedCity?: City;
-
-  optionsValue: any;
-
-    justifyOptions: any[] = [
-        { icon: 'pi pi-align-left', justify: 'Left' },
-        { icon: 'pi pi-align-right', justify: 'Right' },
-        { icon: 'pi pi-align-center', justify: 'Center' },
-        { icon: 'pi pi-align-justify', justify: 'Justify' }
-    ];
-
-    options: any[] = [
-      { name: 'Option 1', value: 1 },
-      { name: 'Option 2', value: 2 },
-      { name: 'Option 3', value: 3 }
-  ];
-
-  value: string = '0';
-    
-    paymentOptions: any[] = [
-        { name: 'Option 1', value: '1' },
-        { name: 'Option 2', value: '2' },
-        { name: 'Option 3', value: '3' }
-    ];
-
-  constructor() {
-    
+  constructor(translate: TranslateService) {
+    this.translate = translate;
   }
 
   ngOnInit(): void {
+    this.translate.stream(['mealPlanning']).subscribe(words => {
+      this.mealPlanningLabel = words['mealPlanning'];
+    });
+    console.log(this.mealPlanningLabel);
     this.home = { icon: 'pi pi-home', routerLink: '/home' };
 
-    // BREAKFAST, LUNCH, SNACK, DINNER
-    this.mealTypes = [
-      { name: 'Breakfast', code: 'BREAKFAST' },
-      { name: 'Lunch', code: 'LUNCH' },
-      { name: 'Snack', code: 'SNACK' },
-      { name: 'Dinner', code: 'DINNER' }
+    this.dishTypes = [
+      { name: 'Starter', value: 'STARTER' },
+      { name: 'Main Course', value: 'MAIN_COURSE' },
+      { name: 'Side Dish', value: 'SIDE_DISH' },
+      { name: 'Drink', value: 'DRINK' }
     ];
 
-    this.cities = [
-      { name: 'New York', code: 'NY' },
-      { name: 'Rome', code: 'RM' },
-      { name: 'London', code: 'LDN' },
-      { name: 'Istanbul', code: 'IST' },
-      { name: 'Paris', code: 'PRS' }
-  ];
+    this.mealTypes = [
+      { name: 'Breakfast', value: 'BREAKFAST' },
+      { name: 'Lunch', value: 'LUNCH' },
+      { name: 'Snack', value: 'SNACK' },
+      { name: 'Dinner', value: 'DINNER' }
+    ];
+
+    this.daysOfWeek = [
+      { name: 'Monday', value: 'MONDAY' },
+      { name: 'Tuesday', value: 'TUESDAY' },
+      { name: 'Wendesday', value: 'WENDESDAY' },
+      { name: 'Thursday', value: 'THURSDAY' },
+      { name: 'Friday', value: 'FRIDAY' },
+      { name: 'Saturday', value: 'SATURDAY' },
+      { name: 'Sunday', value: 'SUNDAY' }
+    ];
   }
 
-  selectedCity(event:any){
-    console.log(event.code);
-  }
-
-  test1(){
-    console.log(this.value);
+  test1() {
+    console.log('selectedDaysOfWeek: ' + this.selectedDaysOfWeek);
+    console.log('selectedMealTypes: ' + this.selectedMealTypes);
+    console.log('selectedDishTypes: ' + this.selectedDishTypes);
   }
 
 }

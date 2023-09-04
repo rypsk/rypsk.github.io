@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanDeactivate, CanLoad, Route, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, Route, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LoginService } from 'src/app/services/login/login.service';
 
@@ -7,7 +7,7 @@ import { LoginService } from 'src/app/services/login/login.service';
   providedIn: 'root'
 })
 
-export class AdminAuthGuard implements CanActivate, CanActivateChild, CanDeactivate<unknown>, CanLoad {
+export class AdminAuthGuard  {
 
   constructor(private loginService: LoginService) {
 

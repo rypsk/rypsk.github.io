@@ -1,6 +1,5 @@
 export const environment = {
   production: true,
-  rypskApiUrl: 'rypsk-rest.herokuapp.com/api',
-  rypskApiUsersUrl: 'rypsk-rest.herokuapp.com/api/users',
+  rypskApiUrl: 'https://rypsk.up.railway.app/api/v1',
   redataApiUrl: 'api.esios.ree.es'
 };

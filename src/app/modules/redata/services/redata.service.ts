@@ -19,11 +19,11 @@ export class RedataService {
   }
 
   getData(requestDate: Date): Observable<any>{
-    let startDate = requestDate.toLocaleDateString() + 'T00:00:00';
+    let startDate = requestDate.toLocaleDateString('en-GB') + 'T00:00:00';
     // let endDate = requestDate.toDateString() + 'T23:59:59';
     // let end_date = new Date(requestDate.getTime() + (1000 * 60 * 60 * 24));
     let end_date = new Date(requestDate.getTime());
-    let endDate = end_date.toLocaleDateString() + 'T23:59:59';
+    let endDate = end_date.toLocaleDateString('en-GB') + 'T23:59:59';
     const url = 'https://api.esios.ree.es/indicators/1001';
     // const url = 'https://apip.esios.ree.es/indicators/1001';
     const options = { 

@@ -10,7 +10,7 @@
     </div>
 </p-menubar>
 
-<p-dialog header="Login" [(visible)]="displayDialog" [modal]="true" [style]="{width: '20vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+<p-dialog header="Login" [(visible)]="displayDialog" [modal]="true" [breakpoints]="{ '960px': '75vw' }" [style]="{width: '20vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
     <p-tabView>
         <p-tabPanel header="Sign-In">
             <app-signin (onSubmitEvent)="onSignInFormSubmit($event)"></app-signin>

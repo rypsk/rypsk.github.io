@@ -86,22 +86,25 @@ export class RedataHomeComponent implements OnInit {
     console.log(this.requestDate);
     this.redataService.getData(this.requestDate).subscribe((redata: REData) => {
       this.data = redata.indicator.values;
-      
+      console.log('datos1: ' + this.data.length);
+      // this.data = this.data.filter(t=>t.geo_id ===8741);      
       this.data.forEach(value => {
         let price = value.value / 1000;
         value.color = 'red';
         this.prices.push(Math.round(price * 100000) / 100000);
         this.pricesAux.push(Math.round(price * 100000) / 100000);
       });
+      console.log('datos2: ' + this.data.length);
       let pricesSorted = [];
       pricesSorted = this.pricesAux.sort(function (a, b) { return a - b });
+      console.log('datos3: ' + this.data.length);
       let pricesMap = new Map();
       let i: number = 1;
       pricesSorted.forEach(value => {
         pricesMap.set(value, i)
         i++;
       })
-
+      console.log('datos4: ' + this.data.length);
       this.data.forEach(value => {
         let price = value.value / 1000;
         value.position = pricesMap.get((Math.round(price * 100000) / 100000));
@@ -109,6 +112,7 @@ export class RedataHomeComponent implements OnInit {
         if(value.position == 1){this.minPriceHour = value.datetime;}
         if(value.position == 24){this.maxPriceHour = value.datetime;}
       })
+      console.log('datos5: ' + this.data.length);
       this.fillChart();
       this.maxPrice = Math.max(...this.prices);
       this.minPrice = Math.min(...this.prices);

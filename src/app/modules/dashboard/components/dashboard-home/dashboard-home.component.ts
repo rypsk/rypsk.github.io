@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { MenuItem } from 'primeng/api/menuitem';
 import { User } from 'src/app/models/user';
+import { DashboardService } from 'src/app/services/dashboard/dashboard.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -25,7 +26,7 @@ export class DashboardHomeComponent implements OnInit {
   users: User[] = [];
   cols: any[] = [];
 
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, translate: TranslateService) {
+  constructor(private dashboardService: DashboardService, private activatedRoute: ActivatedRoute, translate: TranslateService) {
     this.translate = translate;
 
     this.activatedRoute.data.subscribe(data => {
@@ -58,7 +59,7 @@ export class DashboardHomeComponent implements OnInit {
   }
 
   getAllUsers() {
-    this.userService.getAllUsers().subscribe((data: any) => {
+    this.dashboardService.getAllUsers().subscribe((data: any) => {
       this.users = data;
       console.log(this.users);
     })

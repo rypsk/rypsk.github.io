@@ -1,25 +1,25 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { HandleError, HttpErrorHandler } from '../http-error-handler/http-error-handler.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginService } from '../login/login.service';
-import { catchError } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { catchError } from 'rxjs/internal/operators/catchError';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class DashboardService {
 
   rypskApiUrl: string = environment.rypskApiUrl;
   private handleError: HandleError;
 
   constructor(private loginService: LoginService, private http: HttpClient, httpErrorHandler: HttpErrorHandler) {
-    this.handleError = httpErrorHandler.createHandleError('UserService')
+    this.handleError = httpErrorHandler.createHandleError('DashboardService')
   }
 
   getAllUsers(){
     console.log('token: ' + this.loginService.token);
-    let resource = '/users';
+    let resource = '/dashboard/users';
     const url = this.rypskApiUrl + resource;
     const httpOptions = {
       headers: new HttpHeaders({
@@ -34,4 +34,5 @@ export class UserService {
         catchError(this.handleError('signUp', 'Error'))
       );
   }
+
 }

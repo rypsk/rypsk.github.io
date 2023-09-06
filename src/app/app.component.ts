@@ -8,7 +8,6 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'rypsk';
   constructor(translate: TranslateService, private router: Router) {
     translate.addLangs(['en', 'es']);
     translate.setDefaultLang('es');

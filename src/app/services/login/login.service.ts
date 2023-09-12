@@ -6,6 +6,7 @@ import { User } from 'src/app/models/user';
 import { HandleError, HttpErrorHandler } from '../http-error-handler/http-error-handler.service';
 import { environment } from 'src/environments/environment';
 import * as bcrypt from 'bcryptjs';
+import * as crypto from 'crypto-js';
 import { SignResponse } from 'src/app/models/signResponse';
 import { SignInRequest } from 'src/app/models/signInRequest';
 import { SignUpRequest } from 'src/app/models/signUpRequest';
@@ -16,12 +17,13 @@ import { SignUpRequest } from 'src/app/models/signUpRequest';
 export class LoginService {
 
   rypskApiUrl: string = environment.rypskApiUrl;
+  secret: string = environment.secret;
   isLogged: boolean = false;
   isEnabled: boolean = false;
   isAdmin: boolean = false;
-  username: string = '';
-  email: string = '';
-  token: string = '';
+  username: any = '';
+  email: any = '';
+  token: any = '';
   authorities: string[] = [];
   private handleError: HandleError;
 
@@ -115,10 +117,19 @@ export class LoginService {
     this.authorities = [];
     this.username = '';
     this.isAdmin = false;
+    localStorage.clear();
     return this.isLogged;
   }
 
-  setUserLogged(signResponse: SignResponse) {
+  encryptToAes(param: string): string{
+    return crypto.AES.encrypt(param,this.secret).toString();
+  }
+
+  decryptFromAes(param: any): string{
+    return crypto.AES.decrypt(param,this.secret).toString(crypto.enc.Utf8);
+  }
+
+  setUserLogged(signResponse: SignResponse) {    
     this.isLogged = true;
     this.isEnabled = signResponse.isEnabled;
     this.email = signResponse.email;
@@ -126,6 +137,25 @@ export class LoginService {
     this.authorities = signResponse.authorities;
     this.username = signResponse.username;
     this.isAdmin = signResponse.authorities[0] == 'ROLE_ADMIN';
+
+    localStorage.setItem('isLogged', this.isLogged?this.encryptToAes('true'):this.encryptToAes('false'));
+    localStorage.setItem('isEnabled', this.isEnabled?this.encryptToAes('true'):this.encryptToAes('false'));
+    localStorage.setItem('email',this.encryptToAes(this.email));
+    localStorage.setItem('token',this.token);
+    localStorage.setItem('authorities',this.encryptToAes(this.authorities[0]));
+    localStorage.setItem('username',this.encryptToAes(this.username));
+    localStorage.setItem('isAdmin',this.isAdmin?this.encryptToAes('true'):this.encryptToAes('false'));
+  }
+
+  setUserLoggedFromLocalStorage(){
+    this.isLogged = this.decryptFromAes(localStorage.getItem('isLogged')) == 'true';
+    this.isEnabled = this.decryptFromAes(localStorage.getItem('isEnabled')) == 'true';
+    this.email = this.decryptFromAes(localStorage.getItem('email')) != null?this.decryptFromAes(localStorage.getItem('email')):'';
+    this.token = localStorage.getItem('token') != null?localStorage.getItem('token'):'';
+    let auths: any = [this.decryptFromAes(localStorage.getItem('authorities')) != null?this.decryptFromAes(localStorage.getItem('authorities')):''];
+    this.authorities = auths;
+    this.username = this.decryptFromAes(localStorage.getItem('username')) != null?this.decryptFromAes(localStorage.getItem('username')):'';
+    this.isAdmin = auths == 'ROLE_ADMIN';
   }
 
 }

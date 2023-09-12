@@ -23,11 +23,10 @@ export class DashboardService {
     const url = this.rypskApiUrl + resource;
     const httpOptions = {
       headers: new HttpHeaders({
-        'hello':'world',
         'Content-Type':  'application/json',
         'Authorization': 'Bearer ' + this.loginService.token
       }),
-      
+      withCredentials:true
     };
     return this.http.get(url, httpOptions)
       .pipe(

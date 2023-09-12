@@ -42,7 +42,8 @@
             ],
             "allowedCommonJsDependencies": [
               "chart.js",
-              "bcryptjs"
+              "bcryptjs",
+              "crypto-js"
            ]
           },
           "configurations": {
